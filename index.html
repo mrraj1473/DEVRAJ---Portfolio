@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="images/profile-2.png" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" 
+          href="style2.css">
+    <title>Contact Page</title>
+</head>
+
+<body>
+    <!-- Header section -->
+    <header>
+        <button class="hamburger" id="hamburger-icon">
+            <span onclick="openNavbar()"> ☰</span>
+        </button>
+        <div class="logo">Dev</div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="">Projects</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+            </ul>
+        </nav>
+        <button class="reachUs-button">Call us</button>
+    </header>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev | Cosmic Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #0ff0fc;
+            --neon-purple: #9600ff;
+            --neon-pink: #ff00f7;
+            --neon-green: #00ff9d;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --light: #f0f0f0;
+            --gray: #888;
+            --glass: rgba(10, 10, 10, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            font-family: 'Orbitron', 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        }
+
+        /* Universe Background */
+
+        #universe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
+        }
+
+        /* Stars */
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            transform: rotateZ(45deg);
+        }
+
+        .star {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(-45deg, var(--neon-blue), rgba(0, 0, 255, 0));
+            border-radius: 999px;
+            filter: drop-shadow(0 0 6px var(--neon-blue));
+            animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+        }
+
+        .star::before,
+        .star::after {
+            content: '';
+            position: absolute;
+            top: calc(50% - 1px);
+            right: 0;
+            height: 2px;
+            background: linear-gradient(-45deg, rgba(0, 0, 255, 0), var(--neon-blue), rgba(0, 0, 255, 0));
+            transform: translateX(50%) rotateZ(45deg);
+            border-radius: 100%;
+            animation: shining 3000ms ease-in-out infinite;
+        }
+
+        .star::after {
+            transform: translateX(50%) rotateZ(-45deg);
+        }
+
+        .star:nth-child(1) {
+            top: calc(50% - 100px);
+            left: calc(50% - 250px);
+            animation-delay: 1000ms;
+        }
+
+        .star:nth-child(1)::before,
+        .star:nth-child(1)::after {
+            animation-delay: 1000ms;
+        }
+
+        .star:nth-child(2) {
+            top: calc(50% - 50px);
+            left: calc(50% - 200px);
+            animation-delay: 2000ms;
+        }
+
+        .star:nth-child(2)::before,
+        .star:nth-child(2)::after {
+            animation-delay: 2000ms;
+        }
+
+        .star:nth-child(3) {
+            top: calc(50% - 0px);
+            left: calc(50% - 150px);
+            animation-delay: 3000ms;
+        }
+
+        .star:nth-child(3)::before,
+        .star:nth-child(3)::after {
+            animation-delay: 3000ms;
+        }
+
+        .star:nth-child(4) {
+            top: calc(50% + 50px);
+            left: calc(50% - 200px);
+            animation-delay: 4000ms;
+        }
+
+        .star:nth-child(4)::before,
+        .star:nth-child(4)::after {
+            animation-delay: 4000ms;
+        }
+
+        /* Nebula */
+
+        .nebula {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .nebula-1 {
+            background: radial-gradient(circle, var(--neon-purple), transparent 70%);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .nebula-2 {
+            background: radial-gradient(circle, var(--neon-blue), transparent 70%);
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .nebula-3 {
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            top: 60%;
+            left: 30%;
+            width: 200px;
+            height: 200px;
+            animation-delay: 4s;
+        }
+
+        /* Glow effects */
+
+        .glow {
+            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+        }
+
+        .glow-purple {
+            text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+        }
+
+        .glow-pink {
+            text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+        }
+
+        .glow-green {
+            text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+        }
+
+        /* Typography */
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--neon-blue);
+            animation: borderPulse 2s ease-in-out infinite;
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            margin-bottom: 1rem;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        p {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* Layout */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* Hero section */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        /* Profile image */
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-purple);
+            margin-bottom: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient( to bottom right, transparent, transparent, transparent, var(--neon-blue), transparent, transparent, transparent);
+            transform: rotate(0deg);
+            animation: rotateBorder 4s linear infinite;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-purple);
+        }
+
+        /* Typing animation */
+
+        .typing {
+            color: var(--light);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid var(--neon-blue);
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink 0.8s infinite, textGlow 3s ease-in-out infinite alternate;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Buttons */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            background: rgba(15, 15, 15, 0.8);
+            color: var(--light);
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            background-size: 400%;
+            opacity: 0;
+            transition: 0.5s;
+            animation: animateBtnBorder 20s linear infinite;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(15, 240, 252, 0.3);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        /* Skill tags */
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(15, 240, 252, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        .skill-tag:hover {
+            background: var(--neon-blue);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* Card styles */
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(15, 240, 252, 0.1);
+            border: 1px solid rgba(15, 240, 252, 0.1);
+            transition: all 0.5s ease;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-in-out forwards;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient( 45deg, transparent, rgba(15, 240, 252, 0.05), transparent);
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(15, 240, 252, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Grid layout */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* About section */
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        /* Animations */
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes animateBtnBorder {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 400% 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        @keyframes tail {
+            0% {
+                width: 0;
+            }
+            30% {
+                width: 100px;
+            }
+            100% {
+                width: 0;
+            }
+        }
+
+        @keyframes shooting {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(300px);
+            }
+        }
+
+        @keyframes shining {
+            0% {
+                width: 0;
+            }
+            50% {
+                width: 30px;
+            }
+            100% {
+                width: 0;
+            }
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 5px var(--neon-blue);
+            }
+            50% {
+                text-shadow: 0 0 20px var(--neon-blue), 0 0 10px var(--neon-purple);
+            }
+            100% {
+                text-shadow: 0 0 5px var(--neon-blue);
+            }
+        }
+
+        @keyframes borderPulse {
+            0% {
+                width: 50%;
+                opacity: 1;
+            }
+            50% {
+                width: 60%;
+                opacity: 0.7;
+            }
+            100% {
+                width: 50%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+
+        @media (max-width: 768px) {
+            .hero-content {
+                text-align: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .profile-img {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Section animations */
+
+        section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Universe Background -->
+    <div id="universe">
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <img src="images/profile-2.png" alt="Dev Lunar Developments" class="profile-img">
+                <h1>I am Dev Lunar Developments <span class="glow"></span></h1>
+                <div class="typing">known as IG12!</div>
+                <p class="glow-green">Everything I build stands out. Unique, Powerful and Next level.</p>
+                <p>I am a full-stack developer with a strong command over web technologies, automation, and high-performance system management. From developing sleek, responsive websites to optimizing large-scale servers, I handle it all. My expertise extends
+                    to cloud solutions, security enhancements, and advanced networking, ensuring smooth and efficient digital operations.</p>
+                <p>Apart from development, I have a deep passion for video editing, crafting high-quality cinematic content that stands out. Whether it's building a seamless online platform or creating visually stunning edits, I bring precision, creativity,
+                    and innovation to every project.</p>
+                <div class="btn-group">
+                    <a href="https://instagram.com/harshjakhar.01" target="_blank" class="btn" style="border-radius: 999px;">
+    <i class="fas fa-camera" style="margin-right: 8px;"></i> Instagram
+</a>
+                    <a href="mailto:ndngmrz@gmail.com" class="btn" style="border-radius: 999px;">
+    <i class="fas fa-envelope" style="margin-right: 8px;"></i> Email
+</a>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2><span class="glow-purple">About me</span> </h2>
+
+            <div class="about-content">
+                <div class="card">
+                    <h3>Hey! I’m Harsh,</h3>
+                    <p>A self-taught developer and creator with an unshakable passion for technology, problem-solving, and innovation. My journey in tech started with Minecraft server development, where I mastered the art of optimizing game servers for peak
+                        performance and scalability. This early experience sparked my interest in backend development, server administration, and infrastructure management eventually leading me to specialize in Pterodactyl panel management, system optimization,
+                        and virtualization technologies.</p>
+
+                    <p>Over time, my journey led me to become the Support Lead at HIC Pvt. Ltd., where I’ve taken on responsibilities that go beyond development—managing client infrastructure, ensuring uptime, automating deployment workflows, and supporting
+                        teams across various tech stacks. Working at HIC has sharpened my skills in real-world problem-solving, high-stress issue resolution, and delivering reliable, scalable solutions that power live systems. It’s where my passion for
+                        tech meets real impact.</p>
+                    <p>I’ve always believed that creativity, precision, and originality should go hand-in-hand and that mindset reflects in everything I build. From concept to execution, I aim to deliver projects that not only work flawlessly but also stand
+                        out for their uniqueness.</p>
+                    <div class="btn-group">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🚀 Skills & Expertise</h3>
+                    <div>
+                        <span class="skill-tag"><i class="fas fa-globe"></i> AI Specialist</span>
+                        <span class="skill-tag"><i class="fas fa-brain"></i> Website Design & Development</span>
+                        <span class="skill-tag"><i class="fas fa-server"></i> Pterodactyl Management</span>
+                        <span class="skill-tag"><i class="fas fa-shield-alt"></i> Systems Administration</span>
+                        <span class="skill-tag"><i class="fas fa-film"></i> Video Editing</span>
+                        <span class="skill-tag"><i class="fas fa-gamepad"></i> Minecraft Server Optimization</span>
+                        <span class="skill-tag"><i class="fas fa-network-wired"></i> Hosting & Server Management</span>
+                        <span class="skill-tag"><i class="fas fa-robot"></i> Discord Bot Developer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2>Projects / <span class="glow-pink">Work Showcase</span></h2>
+            <p>Some cool stuff I’ve worked on lately.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>HIC Server</h3>
+                    <p> - Support Lead</p>
+                    <p>HIC Server delivers high-performance hosting, Pterodactyl management, web development, and virtualization, ensuring top-tier reliability and scalability for gamers and businesses.</p>
+                    <div>
+                        <span class="skill-tag">Multi-region deployment</span>
+                        <span class="skill-tag">DDoS protection</span>
+                        <span class="skill-tag">Custom control panel</span>
+                        <span class="skill-tag">High-Performance Hosting</span>
+                        <span class="skill-tag">Server Virtualization</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Craft Core</h3>
+                    <p>- Manager </p>
+                    <p>Craft Core is a team of developers, designers, and system admins specializing in Minecraft servers, Pterodactyl, web design, and hosting solutions. We focus on performance, scalability, and innovation.</p>
+                    <div>
+                        <span class="skill-tag">Minecraft Development</span>
+                        <span class="skill-tag">Pterodactyl Management</span>
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Logo & Video Editing/Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center;">© 2025 Lunar Developments. All rights reserved.</p>
+    </section>
+    <script>
+        // Shooting stars
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 3000}ms`;
+            document.querySelector('.stars').appendChild(star);
+
+            // Remove after animation completes
+            setTimeout(() => {
+                star.remove();
+            }, 3000);
+        }
+
+        // Create initial shooting stars
+        setInterval(createShootingStar, 800);
+
+        // Animate text elements sequentially
+        document.querySelectorAll('p, .skill-tag, .card').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+
+                    // Animate child elements when section comes into view
+                    const elements = entry.target.querySelectorAll('h2, h3, p, .btn, .skill-tag, .card');
+                    elements.forEach((el, i) => {
+                        setTimeout(() => {
+                            el.style.animationPlayState = 'running';
+                        }, i * 100);
+                    });
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+
+            // Pause animations initially
+            section.querySelectorAll('h2, h3, p, .btn, .skill-tag, .card').forEach(el => {
+                el.style.animationPlayState = 'paused';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Cosmic background effect
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            document.querySelector('.nebula-1').style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            document.querySelector('.nebula-2').style.transform = `translate(${x * -30}px, ${y * -30}px)`;
+            document.querySelector('.nebula-3').style.transform = `translate(${x * 10}px, ${y * -10}px)`;
+        });
+    </script>
+</body>
+
+</html>
